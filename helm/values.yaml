@@ -1,0 +1,19 @@
+nameOverride: pihole
+image:
+  tag: "v0.14.0"
+  pullPolicy: IfNotPresent
+
+logLevel: debug
+interval: 1m
+
+provider: pihole
+env:
+  - name: EXTERNAL_DNS_PIHOLE_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: pihole-admin
+        key: password
+
+extraArgs:
+- --ingress-class=nginx-internal
+- --pihole-server=http://pihole-web.pihole.svc
