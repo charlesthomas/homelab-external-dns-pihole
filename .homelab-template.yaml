@@ -14,7 +14,7 @@ labels: |-
   app.kubernetes.io/instance: external-dns-pihole
   app.kubernetes.io/name: pihole
 name: external-dns-pihole
-namespace: external-dns
+namespace: external-dns-pihole
 pvc: false
 reloader: true
 resources:

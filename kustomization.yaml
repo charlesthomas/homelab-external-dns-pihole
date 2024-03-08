@@ -1,7 +1,7 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: external-dns
+namespace: external-dns-pihole
 
 commonAnnotations:
   repo: https://github.com/charlesthomas/homelab-external-dns-pihole
@@ -17,14 +17,14 @@ patches:
     kind: Deployment
     metadata:
       name: external-dns-pihole
-      namespace: external-dns
+      namespace: external-dns-pihole
       annotations:
         reloader.stakater.com/auto: "true"
   target:
     kind: Deployment
 helmCharts:
 - name: external-dns
-  namespace: external-dns
+  namespace: external-dns-pihole
   releaseName: external-dns-pihole
   repo: https://kubernetes-sigs.github.io/external-dns/
   valuesFile: helm/values.yaml
