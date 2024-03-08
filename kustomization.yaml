@@ -12,6 +12,16 @@ commonLabels:
 resources:
 - resources/namespaces.yaml
 patches:
+- patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: external-dns-pihole
+      namespace: external-dns
+      annotations:
+        reloader.stakater.com/auto: "true"
+  target:
+    kind: Deployment
 helmCharts:
 - name: external-dns
   namespace: external-dns
