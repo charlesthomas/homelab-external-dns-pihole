@@ -10,6 +10,7 @@ commonLabels:
   app.kubernetes.io/name: pihole
 
 resources:
+- resources/external-secrets.yaml
 - resources/namespaces.yaml
 patches:
 - patch: |-
