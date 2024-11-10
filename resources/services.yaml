@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-dns-pihole
+  namespace: external-dns-pihole
+  labels:
+    app.kubernetes.io/name: pihole
+    app.kubernetes.io/instance: external-dns-pihole
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: pihole
+    app.kubernetes.io/instance: external-dns-pihole
+  ports:
+    - name: http
+      port: 7979
+      targetPort: http
+      protocol: TCP

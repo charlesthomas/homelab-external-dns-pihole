@@ -2,13 +2,7 @@ _commit: v1.12.1-6-gbf0c0a5
 _src_path: /Users/crthomas/code/charlesthomas/homelab-template
 additionalResources: ''
 backups: false
-helm: true
-helmCrds: false
-helmName: external-dns
-helmRelease: external-dns-pihole
-helmRepo: https://kubernetes-sigs.github.io/external-dns/
-helmValues: helm/values.yaml
-helmVersion: ''
+helm: false
 homepageEnabled: false
 ingress: false
 labels: |-
@@ -19,7 +13,11 @@ namespace: external-dns-pihole
 pvc: false
 reloader: true
 resources:
+- deployments.yaml
 - external-secrets.yaml
+- rbac.yaml
+- service-accounts.yaml
+- services.yaml
 service: false
 serviceAccount: false
 upstreamURL: https://github.com/kubernetes-sigs/external-dns
