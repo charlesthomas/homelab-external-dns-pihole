@@ -5,9 +5,11 @@ namespace: external-dns-pihole
 
 commonAnnotations:
   repo: https://github.com/charlesthomas/homelab-external-dns-pihole
-commonLabels:
-  app.kubernetes.io/instance: external-dns-pihole
-  app.kubernetes.io/name: pihole
+labels:
+- includeSelectors: true
+  pairs:
+    app.kubernetes.io/instance: external-dns-pihole
+    app.kubernetes.io/name: pihole
 
 resources:
 - resources/deployments.yaml
@@ -27,3 +29,11 @@ patches:
         reloader.stakater.com/auto: "true"
   target:
     kind: Deployment
+configMapGenerator:
+- name: grafana-dashboard-external-dns-pihole
+  files:
+  - grafana/external-dns-pihole.json
+  options:
+    disableNameSuffixHash: true
+    labels:
+      grafana_dashboard: "1"
